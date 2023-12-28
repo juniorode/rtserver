@@ -1,6 +1,7 @@
 package io.edifice.rtserver;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -13,6 +14,7 @@ import static java.lang.System.currentTimeMillis;
 
 @Slf4j
 @Service
+@ConditionalOnProperty(name = "sse.enabled", havingValue = "true")
 public class SSEService {
 
   private final Map<String, Set<SseEmitter>> emittersByResourceUri;
